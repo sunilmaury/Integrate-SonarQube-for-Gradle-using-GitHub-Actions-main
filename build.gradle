@@ -1,0 +1,30 @@
+plugins {
+  id 'application'
+  id "org.sonarqube" version "4.4.1.3373"
+}
+repositories{
+  mavenCentral()
+}
+dependencies {
+    testImplementation 'junit:junit:4.13.2'
+    implementation 'com.google.guava:guava:32.1.1-jre' // Corrected typo here
+}
+
+java{
+  toolchain {
+    languageVersion = JavaLanguageVersion.of(17)
+  }
+}
+application{
+  mainClass = 'Hello.App'
+}
+sonar {
+  properties{
+    property('sonar.projectName', 'gradle-scanner')
+    property("sonar.projectkey", "gradle-scanner")
+    property("sonar.login", "admin")
+    property("sonar.password", "1234")
+    property("sonar.sources", "src/main")
+    property("sonar.tests", "src/test")
+  }
+}
